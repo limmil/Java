@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Quick Servlet Demo</title>
+    <title>Student Attendance</title>
 </head>
 <body background="C:\Users\p-chandra\Documents\Workspace\QuickServletApp\WebContent\temp.jpg">
 	<font color="white">

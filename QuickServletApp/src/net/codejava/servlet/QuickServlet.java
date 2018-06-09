@@ -1,6 +1,7 @@
 package net.codejava.servlet;
  
 import java.io.IOException;
+import java.util.Random;
 import java.io.PrintWriter;
 import SheetPackageTest.SheetsQuickstart;
 import javax.servlet.ServletConfig;
@@ -27,23 +28,27 @@ public class QuickServlet extends HttpServlet {
 
         PrintWriter writer = response.getWriter();
         SheetsQuickstart.updateSheet();
-        writer.println("<html>Hello, I am a Java servlet!</html>");
-        writer.flush();
+        //writer.println("<html>Hello, I am a Java servlet!</html>");
+        //writer.flush();
     }
  
     /**
      * handles HTTP POST request
+     * @throws ServletException 
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException, NullPointerException {
     	
-    	doGet(request, response);
         String paramKey = request.getParameter("Student ID");
-        int Key = Integer.parseInt(paramKey);
- 
+        int ID = Integer.parseInt(paramKey);
         String paramID = request.getParameter("Key");
-        int ID = Integer.parseInt(paramID);
+        int Key = Integer.parseInt(paramID);
         
+        String userTeacher = request.getParameter("userTeacher");
+        String username= userTeacher;
+        String passTeacher = request.getParameter("passTeacher");
+        String password=passTeacher;
+ 
         int x = 4444; // manual key
         
         //long area = width * height;
