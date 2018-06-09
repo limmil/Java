@@ -28,6 +28,7 @@ public class QuickServlet extends HttpServlet {
 
         PrintWriter writer = response.getWriter();
         SheetsQuickstart.updateSheet();
+        
         //writer.println("<html>Hello, I am a Java servlet!</html>");
         //writer.flush();
     }
@@ -42,17 +43,17 @@ public class QuickServlet extends HttpServlet {
         String paramKey = request.getParameter("Student ID");
         int ID = Integer.parseInt(paramKey);
         String paramID = request.getParameter("Key");
-        int Key = Integer.parseInt(paramID);
+        String Key = paramID;
         
         String userTeacher = request.getParameter("userTeacher");
         String username= userTeacher;
         String passTeacher = request.getParameter("passTeacher");
         String password=passTeacher;
  
-        int x = 4444; // manual key
+        String keyMain = SheetsQuickstart.getKey();
         
         //long area = width * height;
-        if (Key == x) {
+        if (Key.equals(keyMain)) {
         	PrintWriter writer = response.getWriter();
             writer.println("<html>Thank You</html>");
             writer.flush();
