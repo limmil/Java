@@ -42,7 +42,7 @@ public class SheetsQuickstart {
     }
 
     public static Credential authorize() throws IOException {
-        InputStream in = new FileInputStream("C:\\Users\\p-chandra\\Documents\\Workspace\\GoogleSheetTester\\src\\main\\resources\\client_secret.json");
+        InputStream in = new FileInputStream("C:\\DevPrograms\\eclipse\\workspace\\CSC131\\Java\\GoogleSheetTester\\src\\main\\resources\\client_secret.json");
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(DATA_STORE_FACTORY)
@@ -92,13 +92,35 @@ public class SheetsQuickstart {
         }
     }
     
-    public static void main(String[] args) throws IOException {
-        Sheets service = getSheetsService();
+    //
+    public static void updateSheet(String stringValue, int sheetId, int rowIndex, int columIndex)throws IOException{
+    	Sheets service = getSheetsService();
         List<Request> requests = new ArrayList<>();
         getKey();
         //Adding DATE to row and column
         List<CellData> values = new ArrayList<>();
-        values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue(("5/28/2018"))));
+        values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue((stringValue))));
+        requests.add(new Request()
+        		.setUpdateCells(new UpdateCellsRequest()
+        		.setStart(new GridCoordinate().setSheetId(sheetId).setRowIndex(rowIndex).setColumnIndex(columIndex))
+        		.setRows(Arrays.asList(new RowData().setValues(values)))
+        		.setFields("userEnteredValue,userEnteredFormat.backgroundColor")));     
+        BatchUpdateSpreadsheetRequest batchUpdateRequest = new BatchUpdateSpreadsheetRequest().setRequests(requests);
+     	service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest).execute();
+    }
+    
+    public static void main(String[] args) throws IOException {
+        
+    	updateSheet("6/10/2018", 0, 0, 6);
+    	updateSheet("Yes", 0, 1, 6);
+    	
+    	/*
+    	Sheets service = getSheetsService();
+        List<Request> requests = new ArrayList<>();
+        getKey();
+        //Adding DATE to row and column
+        List<CellData> values = new ArrayList<>();
+        values.add(new CellData().setUserEnteredValue(new ExtendedValue().setStringValue(("6/10/2018"))));
         requests.add(new Request()
         		.setUpdateCells(new UpdateCellsRequest()
         		.setStart(new GridCoordinate().setSheetId(0).setRowIndex(0).setColumnIndex(6))
@@ -118,5 +140,7 @@ public class SheetsQuickstart {
                  .setFields("userEnteredValue,userEnteredFormat.backgroundColor")));        
         BatchUpdateSpreadsheetRequest batchUpdateRequestNew = new BatchUpdateSpreadsheetRequest().setRequests(requests);
      	service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequestNew).execute();             	
+    */
     }
+    
 }
