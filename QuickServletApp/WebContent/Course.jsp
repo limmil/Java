@@ -2,8 +2,8 @@
 <head>
 <title>Select Course</title>
 </head>
+<link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
 <font color="white">
-<body background="C:\Users\p-chandra\Documents\Workspace\QuickServletApp\WebContent\temp.jpg">
 <h1>
 	<font size="14">CSUS Attendance</font></h1>
 	<font size="4">Welcome Professor</font>
