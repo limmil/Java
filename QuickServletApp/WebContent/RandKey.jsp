@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Random Key</title>
 </head>
-<body background="C:\Users\p-chandra\Documents\Workspace\QuickServletApp\WebContent\temp.jpg">>
+<link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
 <font color="white">
 
     <%@page import="java.util.*" %>
