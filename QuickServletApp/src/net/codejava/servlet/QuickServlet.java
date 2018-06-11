@@ -40,22 +40,24 @@ public class QuickServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, NullPointerException {
     	
-        String paramKey = request.getParameter("Student ID");
-        int ID = Integer.parseInt(paramKey);
-        String paramID = request.getParameter("Key");
-        String Key = paramID;
+        String paramID = request.getParameter("Student ID");
+        int ID = Integer.parseInt(paramID);
+        String paramKey = request.getParameter("Key");
+        String Key = paramKey;
         
         String userTeacher = request.getParameter("userTeacher");
         String username= userTeacher;
         String passTeacher = request.getParameter("passTeacher");
         String password=passTeacher;
  
+        // echoes key to console and stores in keyMain
         String keyMain = SheetsQuickstart.getKey();
         
-        //long area = width * height;
+        // student JSP response page : 
+        
         if (Key.equals(keyMain)) {
         	PrintWriter writer = response.getWriter();
-            writer.println("<html>Thank You</html>");
+            writer.println("<html>Thank You! Correct Key.</html>");
             writer.flush();
         }else {
         	PrintWriter writer = response.getWriter();
