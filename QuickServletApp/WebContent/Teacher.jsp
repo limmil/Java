@@ -2,6 +2,7 @@
 <head>
 <title>Teacher Sign In</title>
 </head>
+<link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
 <font color="white">
 <body background="C:\Users\p-chandra\Documents\Workspace\QuickServletApp\WebContent\temp.jpg">
 

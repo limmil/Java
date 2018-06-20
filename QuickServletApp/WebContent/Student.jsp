@@ -2,7 +2,8 @@
 <head>
     <title>Student Attendance</title>
 </head>
-<body background="C:\Users\p-chandra\Documents\Workspace\QuickServletApp\WebContent\temp.jpg">
+<link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
+<body>
 	<font color="white">
 	<h1>CSUS Attendance</h1>
 	<p>Please enter your Student ID# and the Attendance Key</p>

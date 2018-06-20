@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SheetsQuickstart {
-    private static final String APPLICATION_NAME = "CSC131";
+    private static final String APPLICATION_NAME = "CSC131 Computer Software Engr - SECTION 01";
     private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.home"), ".credentials//sheets.googleapis.com-java-quickstart.json");
     private static FileDataStoreFactory DATA_STORE_FACTORY;
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
@@ -44,9 +44,12 @@ public class SheetsQuickstart {
         }
     }
 
-    public static Credential authorize() throws IOException {
-        InputStream in = new FileInputStream("C:\\DevPrograms\\eclipse\\workspace\\CSC131\\Java\\GoogleSheetTester\\src\\main\\resources\\client_secret.json");
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+
+    public static Credential authorize() throws IOException { 	
+    	String respath = "/client_secret.json";
+    	InputStream in = SheetsQuickstart.class.getResourceAsStream(respath);
+    	GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(DATA_STORE_FACTORY)
                 .setAccessType("offline")
@@ -72,7 +75,7 @@ public class SheetsQuickstart {
         if(element == null || element.isEmpty())
             System.out.println("No data found.");
         else{
-            System.out.println(element.get(0).get(0));
+            System.out.println("Key is: "+ element.get(0).get(0));
         }
     	return (String) element.get(0).get(0);	
     }
@@ -138,6 +141,7 @@ public class SheetsQuickstart {
     	updateSheet("Yes\nNote:test note", 0, 2, 7);
     	updateSheet("username",0,34,5);
     	updateSheet(makeHash256("password"),0,34,6);
+
     }
     
 }
