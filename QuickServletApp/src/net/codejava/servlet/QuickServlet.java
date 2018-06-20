@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 public class QuickServlet extends HttpServlet {
     /**
@@ -25,9 +27,9 @@ public class QuickServlet extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-
-        PrintWriter writer = response.getWriter();
-        SheetsQuickstart.updateSheet();
+        
+    	//PrintWriter writer = response.getWriter();
+        //SheetsQuickstart.updateSheet();
         
         //writer.println("<html>Hello, I am a Java servlet!</html>");
         //writer.flush();
@@ -40,28 +42,46 @@ public class QuickServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException, NullPointerException {
     	
-        String paramKey = request.getParameter("Student ID");
-        int ID = Integer.parseInt(paramKey);
-        String paramID = request.getParameter("Key");
-        String Key = paramID;
-        
-        String userTeacher = request.getParameter("userTeacher");
-        String username= userTeacher;
-        String passTeacher = request.getParameter("passTeacher");
-        String password=passTeacher;
- 
-        String keyMain = SheetsQuickstart.getKey();
-        
-        //long area = width * height;
-        if (Key.equals(keyMain)) {
-        	PrintWriter writer = response.getWriter();
-            writer.println("<html>Thank You</html>");
-            writer.flush();
-        }else {
-        	PrintWriter writer = response.getWriter();
-            writer.println("<html>Invalid Key</html>");
-            writer.flush();
-        }
+    	//action listener======================================================
+    	
+    	String action = request.getParameter("action");
+    	switch (action) {
+	    	case "studentlogin":
+	    		
+	    		break;
+	    	case "teacherlogin":
+	        	String uname = request.getParameter("uname");
+	        	String pword = request.getParameter("pword");
+	        	
+	        	if(uname.equals("teacher") && pword.equals("123")) {
+	        		
+	        		HttpSession session = request.getSession();
+	        		session.setAttribute("user", uname);
+	        		response.sendRedirect("Teacher.jsp");
+	        	}
+	        	else
+	        	{
+	        		response.sendRedirect("Login.jsp");
+	        	}
+	    		break;
+	    	default:
+			    String paramKey = request.getParameter("Student ID");
+		        int ID = Integer.parseInt(paramKey);
+		        String paramID = request.getParameter("Key");
+		        String Key = paramID;
+		        
+		        String userTeacher = request.getParameter("userTeacher");
+		        String username= userTeacher;
+		        String passTeacher = request.getParameter("passTeacher");
+		        String password=passTeacher;
+		 
+		        String keyMain = SheetsQuickstart.getKey();
+		        String hash = SheetsQuickstart.makeHash256("password");
+		        
+	    		break;
+    	}
+    	
+    	//end of action listener===============================================
         
     }
  
